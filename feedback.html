@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Feedback</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        @keyframes animate-particles { from { transform: translateY(0); } to { transform: translateY(-100vh); } }
+
+        body { margin: 0; font-family: 'Nunito', sans-serif; background: #0a0a0a; color: #e0e0e0; overflow-x: hidden; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+        .bg-animation { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: linear-gradient(180deg, #1E6450 0%, #0a0a0a 100%); }
+        .particles { position: absolute; width: 100%; height: 200vh; top: 0; left: 0; }
+        #particles-1 { background: radial-gradient(circle, rgba(147, 233, 190, 0.1) 1px, transparent 1.5px); background-size: 3rem 3rem; animation: animate-particles 50s linear infinite; }
+        #particles-2 { background: radial-gradient(circle, rgba(147, 233, 190, 0.15) 1px, transparent 1.5px); background-size: 5rem 5rem; animation: animate-particles 35s linear infinite; }
+        #particles-3 { background: radial-gradient(circle, rgba(147, 233, 190, 0.2) 1.5px, transparent 2px); background-size: 7rem 7rem; animation: animate-particles 25s linear infinite; }
+        .container { max-width: 800px; margin: 0 auto; padding: 2rem; display: flex; flex-direction: column; justify-content: center; min-height: 100vh; box-sizing: border-box; }
+        .center { align-items: center; text-align: center; }
+        h2 { font-weight: 700; color: #fff; letter-spacing: 1px; font-size: 2.5rem; margin-bottom: 2rem; }
+        .btn { display: inline-block; background: linear-gradient(45deg, #33856D, #5DA787); color: #fff; padding: 1rem 2.5rem; border: none; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 1.1rem; cursor: pointer; transition: transform 0.3s ease, box-shadow 0.3s ease; margin-top: 1.5rem; }
+        .btn:hover { transform: translateY(-5px) scale(1.05); box-shadow: 0 10px 20px rgba(120, 200, 163, 0.3); }
+        .feedback-form-container { width: 100%; max-width: 700px; background: rgba(10, 66, 58, 0.3); backdrop-filter: blur(10px); border: 1px solid #33856D; border-radius: 1rem; padding: 2.5rem; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+        .form-group { margin-bottom: 1.5rem; }
+        .form-group label { display: block; margin-bottom: 0.75rem; color: #b0b0b0; font-weight: 600; font-size: 1.1rem; }
+        input, select, textarea { box-sizing: border-box; width: 100%; padding: 1rem; background: rgba(10, 10, 10, 0.5); border: 1px solid #5DA787; border-radius: 8px; color: #e0e0e0; font-family: 'Nunito', sans-serif; font-size: 1rem; transition: border-color 0.3s ease, box-shadow 0.3s ease; }
+        input:focus, select:focus, textarea:focus { outline: none; border-color: #93E9BE; box-shadow: 0 0 10px rgba(147, 233, 190, 0.3); }
+        .rating-numbers { display: flex; justify-content: space-between; }
+        .rating-numbers input[type="radio"] { display: none; }
+        .rating-numbers label { display: flex; align-items: center; justify-content: center; width: 50px; height: 50px; border: 2px solid #5DA787; border-radius: 50%; cursor: pointer; transition: background-color 0.3s, border-color 0.3s, color 0.3s; font-size: 1.2rem; font-weight: 700; color: #5DA787; }
+        .rating-numbers input[type="radio"]:checked + label { background-color: #5DA787; color: #fff; border-color: #93E9BE; }
+        .rating-numbers label:hover { background-color: rgba(93, 167, 135, 0.2); }
+        .hidden { opacity: 0; transform: translateY(20px); transition: opacity 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94); will-change: opacity, transform; }
+        .show { opacity: 1; transform: translateY(0); }
+    </style>
+</head>
+<body>
+    <div class="bg-animation">
+        <div id="particles-1" class="particles"></div>
+        <div id="particles-2" class="particles"></div>
+        <div id="particles-3" class="particles"></div>
+    </div>
+    <div class="container">
+        <div class="feedback-form-container hidden">
+            <h2 class="center">Feedback Form</h2>
+            <form id="feedbackForm">
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                    <label for="campaign">Campaign Type:</label>
+                    <select id="campaign" required>
+                        <option value="" disabled selected>Select a campaign...</option>
+                        <option value="TV">TV</option>
+                        <option value="Online">Online</option>
+                        <option value="Print">Print</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Rating (1=Poor, 5=Excellent):</label>
+                    <div class="rating-numbers">
+                        <input type="radio" id="rating1" name="rating" value="1" required><label for="rating1">1</label>
+                        <input type="radio" id="rating2" name="rating" value="2"><label for="rating2">2</label>
+                        <input type="radio" id="rating3" name="rating" value="3"><label for="rating3">3</label>
+                        <input type="radio" id="rating4" name="rating" value="4"><label for="rating4">4</label>
+                        <input type="radio" id="rating5" name="rating" value="5"><label for="rating5">5</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="comments">Comments:</label>
+                    <textarea id="comments" rows="4" placeholder="Tell us what you think..."></textarea>
+                </div>
+                <button type="submit" class="btn">Submit</button>
+            </form>
+        </div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const form = document.getElementById("feedbackForm");
+
+            if (form) {
+                form.addEventListener("submit", (e) => {
+                    e.preventDefault();
+                    const name = document.getElementById("name").value;
+                    const campaign = document.getElementById("campaign").value;
+                    const ratingInput = form.querySelector('input[name="rating"]:checked');
+                    const comments = document.getElementById("comments").value;
+
+                    if (!ratingInput) {
+                        alert("Please select a rating.");
+                        return;
+                    }
+                    const rating = ratingInput.value;
+
+                    const feedbackData = JSON.parse(localStorage.getItem("feedbackData")) || [];
+                    feedbackData.push({ name, campaign, rating, comments });
+                    localStorage.setItem("feedbackData", JSON.stringify(feedbackData));
+                    window.location.href = "thankyou.html";
+                });
+            }
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.transitionDelay = `${index * 150}ms`;
+                        entry.target.classList.add('show');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.hidden').forEach(el => observer.observe(el));
+        });
+    </script>
+</body>
+</html>
